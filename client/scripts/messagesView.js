@@ -11,25 +11,27 @@ var MessagesView = {
   // })
 },
 
-  renderMessage: function() {
+  renderMessage: function(message) {
+    console.log(message);
     $(document).ready(function() {
-
-      Parse.readAll(function(data) {
+      
+      // Parse.readAll(function(data) {
         var compiled = _.template(
-         "<div class='username'>Username: <%= username %> </div>" +
-         "<div class='room'>Room: <%= roomname %> </div>" +
-         "<div class='text'>Message: <%= text %> </div>"
+         "<div class='username'>username: <%= username %></div>" +
+         "<div class='text'>text: <%= text %></div>" +
+         "<div class='roomname'>roomname: <%= roomname %></div>" 
           );
          var i, html = "";
-         for (i = 0; i < data.results.length; i++) {
-            html += compiled(data.results[i]);
-         }  
-         $("#chats").append(html);
+         // for (i = 0; i < data.results.length; i++) {
+            html += compiled(message);
+          console.log(html);
+         // }  
+         MessagesView.$chats.append(message);
 
-      });
+      // });
     });
   
-  }
+    }
 
 };
 
@@ -39,7 +41,7 @@ var MessagesView = {
 
 
 
-        ` <div class="username">Username: <%= username %> </div>
-          <div class="room">Room: <%= roomname %> </div>
-          <div class="text">Message: <%= text %> </div>
-        `
+        // ` <div class="username">Username: <%= username %> </div>
+        //   <div class="room">Room: <%= roomname %> </div>
+        //   <div class="text">Message: <%= text %> </div>
+        // `
