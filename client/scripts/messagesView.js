@@ -12,27 +12,20 @@ var MessagesView = {
 },
 
   renderMessage: function(message) {
-    console.log(message);
-    $(document).ready(function() {
-      
-      // Parse.readAll(function(data) {
+      message.username = message.username || 'not available';
+      message['text'] = message['text'] || 'not available';
+      message.roomname = message.roomname || 'not available';
         var compiled = _.template(
+         "<div class='chat'>" +
          "<div class='username'>username: <%= username %></div>" +
          "<div class='text'>text: <%= text %></div>" +
-         "<div class='roomname'>roomname: <%= roomname %></div>" 
+         "<div class='roomname'>roomname: <%= roomname %></div>" +
+         "</div>"
           );
-         var i, html = "";
-         // for (i = 0; i < data.results.length; i++) {
-            html += compiled(message);
-          console.log(html);
-         // }  
-         MessagesView.$chats.append(message);
-
-      // });
-    });
-  
+         var html = "";
+         html += compiled(message);
+         (MessagesView.$chats).append(html);
     }
-
 };
 
 
