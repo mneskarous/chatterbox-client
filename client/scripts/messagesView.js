@@ -3,12 +3,12 @@ var MessagesView = {
   $chats: $('#chats'),
 
   initialize: function() {
-  //   $(document).ready(function() {
+
   //   $('.submit').on('click', function(event) {
   //     //alert('clicked');
   //      $(MessagesView.$userMessage).prependTo(MessagesView.$chats); // Work on this later
   //   });
-  // })
+
 },
 
   renderMessage: function(message) {
