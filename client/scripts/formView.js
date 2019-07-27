@@ -17,11 +17,6 @@ var FormView = {
       text: userMessage,
       roomname: RoomsView.$select.val()
     };
-    
-    console.log(userMessage);
-    // var textBox = $('<div></div>');
-    // $(userMessage).prependTo(textBox);
-    // (textBox).prependTo(FormView.$chats);
     var compiled = _.template(
       "<div class='chat'>" +
       "<div class='username'>username: <%= username %></div>" +
@@ -32,6 +27,8 @@ var FormView = {
      var html = "";
      html += compiled(messageObj);
      (MessagesView.$chats).append(html);
+    
+    
       console.log('click!');
     
   },
