@@ -11,24 +11,35 @@ var MessagesView = {
   // })
 },
 
-  render: function() {
+  renderMessage: function() {
     $(document).ready(function() {
 
       Parse.readAll(function(data) {
-        for (i = 0; i < data.results.length; i++) {
-          var obj = data.results[i];
-          var compiled = _.template(
-            ` <div class="username">Username: <%= obj.username %> </div>
-              <div class="room">Room: <%= obj.roomname %> <div>
-              <div class="text">Message: <%= obj.text %> </div>
-              <div class="timestamp">Posted at: <%= obj.createdAt %> </div>
-            `
+        var compiled = _.template(
+         "<div class='username'>Username: <%= username %> </div>" +
+         "<div class='room'>Room: <%= roomname %> </div>" +
+         "<div class='text'>Message: <%= text %> </div>"
           );
-          $(compiled).prependTo($('#chats'));
-        }
+         var i, html = "";
+         for (i = 0; i < data.results.length; i++) {
+            html += compiled(data.results[i]);
+         }  
+         $("#chats").append(html);
+
       });
     });
   
   }
 
 };
+
+
+
+
+
+
+
+        ` <div class="username">Username: <%= username %> </div>
+          <div class="room">Room: <%= roomname %> </div>
+          <div class="text">Message: <%= text %> </div>
+        `
