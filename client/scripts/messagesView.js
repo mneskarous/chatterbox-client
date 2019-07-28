@@ -8,19 +8,25 @@ var MessagesView = {
   },
 
   renderMessage: function(message) {
-      message.username = message.username || 'not available';
-      message['text'] = message['text'] || 'not available';
-      message.roomname = message.roomname || 'not available';
-      var compiled = _.template(
-         "<div class='chat'>" +
-         "<div class='username'>username: <%= username %></div>" +
-         "<div class='text'>text: <%= text %></div>" +
-         "<div class='roomname'>roomname: <%= roomname %></div>" +
-         "</div>"
-        );
-       var html = "";
-       html += compiled(message);
-       (MessagesView.$chats).append(html);
+      // var compiled = _.template(
+      //    "<div class='chat'>" +
+      //    "<div class='username'>username: <%= username %></div>" +
+      //    "<div class='text'>text: <%= text %></div>" +
+      //    "<div class='roomname'>roomname: <%= roomname %></div>" +
+      //    "</div>"
+      //   );
+      //  var html = "";
+      //  html += compiled(message);
+      //  (MessagesView.$chats).append(html);
+      Messages.item()
+      // .filter(Room.isSelected(message))
+      .each(function(message) {
+        message['username'] = message['username'] || '';
+        message['text'] = message['text'] || '';
+        message['roomname'] = message['roomname'] || '';
+        var $message = MessageView.renderMessage(message);
+        MessagesView.$chats.append($message);
+      });
     }
 };
 

@@ -2,7 +2,7 @@ var FormView = {
 
   $form: $('form'),
   // $userMessage: $('#message').val(),
-  $chats: $('#chats'),
+  // $chats: $('#chats'),
 
   initialize: function() {
     FormView.$form.on('submit', FormView.handleSubmit);
@@ -11,26 +11,20 @@ var FormView = {
   handleSubmit: function(event) {
     // Stop the browser from submitting the form
     event.preventDefault();
-    var userMessage = $('#message').val();
-    var messageObj = {
-      username: window.location.search.substr(10),
-      text: userMessage,
-      roomname: RoomsView.$select.val()
+
+    var message = {
+      username: App.username,
+      text: FormView.$form.find('#message').val(),
+      roomname: 'lobby'
     };
-    var compiled = _.template(
-      "<div class='chat'>" +
-      "<div class='username'>username: <%= username %></div>" +
-      "<div class='text'>text: <%= text %></div>" +
-      "<div class='roomname'>roomname: <%= roomname %></div>" +
-      "</div>"
-    );
-     var html = "";
-     html += compiled(messageObj);
-     (MessagesView.$chats).append(html);
-    
-    
+
+    Parse.create(message, function() {
+      Messages.add(message, MessagesView.renderMessage);
+    });
+
+
       console.log('click!');
-    
+
   },
 
   setStatus: function(active) {
