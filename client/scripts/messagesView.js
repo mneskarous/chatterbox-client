@@ -6,19 +6,21 @@ var MessagesView = {
     MessagesView.$chats.on('click', '.username', MessagesView.handleClick);
   },
 
-  renderMessage: function() {
+  render: function() {
+    MessagesView.$chats.html('');
     Messages
       .items()
       .filter(message => Rooms.isSelected(message.roomname))
       .each(message => MessagesView.renderMessage(message));
   },
 
-  render: function() {
+  renderMessage: function(message) {
     var $message = MessageView.render(message);
     MessagesView.$chats.prepend($message);
   },
 
   handleClick: function(event) {
+    // Get username from data attribute
     var username = $(event.target).data('username');
     if (username === undefined) {
       return;

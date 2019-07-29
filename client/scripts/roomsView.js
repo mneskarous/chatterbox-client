@@ -4,19 +4,36 @@ var RoomsView = {
   $select: $('#rooms select'),
 
   initialize: function() {
-    RoomsView.renderRoom(RoomsView.$select.val());
+    RoomsView.$select.on('change', RoomsView.handleChange);
+    RoomsView.$button.on('click', RoomsView.handleClick);
+  },
+
+  render: function() {
+    RoomsView.$select.html('');
+    Rooms
+      .items()
+      .each(RoomsView.renderRoom);
+    RoomsView.$select.val(Rooms.selected);
   },
 
   renderRoom: function(roomname) {
-    var roomObj = {
-      roomname: roomname
-    };
-    var compiled = _.template(
-      "<option><%= roomname %></option>"
-    )
-    var html = "";
-    html += compiled(roomObj);
-    (RoomsView.$select).append(html);
+    var $option = $('<option>').val(roomname).text(roomname);
+    RoomsView.$select.append($option);
+  },
+
+  handleChange: function(event) {
+    Rooms.selected = RoomsView.$select.val();
+    MessagesView.render();
+  },
+
+  handleClick: function(event) {
+    var roomname = prompt('Enter room name');
+    if (roomname) {
+      Rooms.add(roomname, () => {
+        RoomsView.render();
+        MessagesView.render();
+      });
+    }
   }
 
 };
