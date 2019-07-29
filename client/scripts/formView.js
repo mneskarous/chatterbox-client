@@ -19,7 +19,6 @@ var FormView = {
     Parse.create(message, (data) => {
       _.extend(message, data);
       Messages.add(message, MessagesView.renderMessage);
-
     });
     console.log('click!');
   },
