@@ -3,7 +3,7 @@ var Messages = {
   _data: {},
 
   items: function() {
-    return _.chain(Messages._data).sortBy('createdAt');
+    return _.chain(Object.values(Messages._data)).sortBy('createdAt');
   },
 
   add: function(message, callback = ()=>{}) {
