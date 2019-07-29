@@ -16,6 +16,14 @@ var MessagesView = {
   renderMessage: function() {
     var $message = MessageView.render(message);
     MessagesView.$chats.prepend($message);
+  },
+
+  handleClick: function(event) {
+    var username = $(event.target).data('username');
+    if (username === undefined) {
+      return;
+    }
+    Friends.toggleStatus(username, MessagesView.render);
   }
 
 };
