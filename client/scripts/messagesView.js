@@ -6,14 +6,14 @@ var MessagesView = {
     MessagesView.$chats.on('click', '.username', MessagesView.handleClick);
   },
 
-  render: function() {
+  renderMessage: function() {
     Messages
       .items()
       .filter(message => Rooms.isSelected(message.roomname))
       .each(message => MessagesView.renderMessage(message));
   },
 
-  renderMessage: function() {
+  render: function() {
     var $message = MessageView.render(message);
     MessagesView.$chats.prepend($message);
   },
