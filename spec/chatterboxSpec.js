@@ -71,7 +71,7 @@ describe('chatterbox', function() {
         text: 'Never underestimate the power of the Schwartz!',
         roomname: 'lobby'
       };
-      MessagesView.render(message);
+      MessagesView.renderMessage(message);
       expect($('#chats').children().length).to.equal(1);
     });
 
@@ -87,7 +87,7 @@ describe('chatterbox', function() {
       sinon.spy(Friends, 'toggleStatus');
 
       App.initialize();
-      MessagesView.render({
+      MessagesView.renderMessage({
         username: 'Mel Brooks',
         text: 'I didn\'t get a harumph outa that guy.!',
         roomname: 'lobby'
