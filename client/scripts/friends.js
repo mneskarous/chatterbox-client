@@ -1,6 +1,6 @@
 var Friends = {
 
-    _data: new Set,
+  _data: new Set,
 
   items: function() {
     return _.chain([...Friends._data]);
