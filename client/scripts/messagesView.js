@@ -20,7 +20,6 @@ var MessagesView = {
   },
 
   handleClick: function(event) {
-    // Get username from data attribute
     var username = $(event.target).data('username');
     if (username === undefined) {
       return;
