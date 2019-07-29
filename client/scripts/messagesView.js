@@ -7,7 +7,8 @@ var MessagesView = {
 
   },
 
-  renderMessage: function(message) {
+  renderMessage: function() {
+
       // var compiled = _.template(
       //    "<div class='chat'>" +
       //    "<div class='username'>username: <%= username %></div>" +
@@ -18,16 +19,31 @@ var MessagesView = {
       //  var html = "";
       //  html += compiled(message);
       //  (MessagesView.$chats).append(html);
-      Messages.item()
+      // Messages.item()
       // .filter(Room.isSelected(message))
-      .each(function(message) {
-        message['username'] = message['username'] || '';
-        message['text'] = message['text'] || '';
-        message['roomname'] = message['roomname'] || '';
+      // _.each(function(message) {
+      //   message['username'] = message['username'] || '';
+      //   message['text'] = message['text'] || '';
+      //   message['roomname'] = message['roomname'] || '';
+      //   var $message = MessageView.renderMessage(message);
+      //   MessagesView.$chats.append($message);
+      // });
+
+      // Messages
+      // .items()
+      // .filter(Room.isSelected(message))
+      // .each((message) => {
+      //   var $message = MessageView.renderMessage(message);
+      //   MessagesView.$chats.append($message);
+      // });
+    Messages
+      .items()
+      .filter(message => Rooms.isSelected(message.roomname))
+      .each((message) => {
         var $message = MessageView.renderMessage(message);
         MessagesView.$chats.append($message);
       });
-    }
+  }
 };
 
 

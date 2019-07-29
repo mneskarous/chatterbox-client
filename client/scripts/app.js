@@ -20,9 +20,11 @@ var App = {
   fetch: function(callback = ()=>{}) {
     Parse.readAll((data) => {
       // examine the  response from the server request:
+      Rooms.update(data.results, RoomsView.renderRoom);
       Messages.update(data.results, MessagesView.renderMessage);
 
-      MessagesView.renderMessage();
+      // examine the response from the server request:
+      console.log(data);
 
       callback();
     });
