@@ -3,19 +3,22 @@ var Messages = {
   _data: {},
 
   items: function() {
-    return _.chain(Messages._data);
+    return _.chain(Messages._data).sortBy('createdAt');
   },
 
   add: function(message, callback = ()=>{}) {
     Messages._data[message.objectId] = message;
-    callback();
+    callback(Messages.items());
   },
 
   update: function(messages, callback = ()=>{}) {
+    var length = Object.keys(Messages._data).length;
     for (var message of messages) {
       Messages._data[message.objectId] = Messages._conform(message);
     }
-    callback();
+    if (Object.keys(Messages._data).length !== length) {
+      callback(Messages.items());
+    }
   },
 
   _conform: function(message) {
